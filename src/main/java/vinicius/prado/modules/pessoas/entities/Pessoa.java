@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Setter
 @Getter
 @Entity
 @NoArgsConstructor
@@ -30,10 +32,10 @@ public class Pessoa extends PanacheEntityBase {
     private Timestamp dtNascimento;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL)
-    private List<Enderecos> enderecos = new ArrayList<>();
+    private List<Endereco> enderecos = new ArrayList<>();
 
     @Builder
-    public Pessoa(UUID id, String nome, Timestamp dtNascimento, List<Enderecos> enderecos) {
+    public Pessoa(UUID id, String nome, Timestamp dtNascimento, List<Endereco> enderecos) {
         this.id = id;
         this.nome = nome;
         this.dtNascimento = dtNascimento;

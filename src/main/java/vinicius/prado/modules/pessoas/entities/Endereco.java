@@ -5,13 +5,16 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
+
+@Setter
 @Getter
 @Entity
 @NoArgsConstructor
 @Table(name = "enderecos")
-public class Enderecos extends PanacheEntityBase {
+public class Endereco extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -37,9 +40,19 @@ public class Enderecos extends PanacheEntityBase {
     @Column(name = "estado", nullable = false)
     private String estado;
 
+    @Column(name = "sn_enderecoprincipal", nullable = false)
+    private Boolean snEnderecoPrincipal;
+
 
     @Builder
-    public Enderecos(UUID id, Pessoa pessoa, String logradouro, String cep, String numero, String cidade, String estado) {
+    public Endereco(UUID id,
+                    Pessoa pessoa,
+                    String logradouro,
+                    String cep,
+                    String numero,
+                    String cidade,
+                    String estado,
+                    Boolean snEnderecoPrincipal) {
         this.id = id;
         this.pessoa = pessoa;
         this.logradouro = logradouro;
@@ -47,6 +60,7 @@ public class Enderecos extends PanacheEntityBase {
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
+        this.snEnderecoPrincipal = snEnderecoPrincipal;
     }
 
 
